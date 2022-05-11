@@ -11,6 +11,13 @@
 		B06055CD282B2CFA0004DB05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055CC282B2CFA0004DB05 /* ContentView.swift */; };
 		B06055CF282B2CFB0004DB05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B06055CE282B2CFB0004DB05 /* Assets.xcassets */; };
 		B06055D2282B2CFB0004DB05 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B06055D1282B2CFB0004DB05 /* Preview Assets.xcassets */; };
+		B06055DA282B2ED60004DB05 /* SmallAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055D9282B2ED60004DB05 /* SmallAddButton.swift */; };
+		B06055DC282B31120004DB05 /* FormToSubmitNewResaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055DB282B31120004DB05 /* FormToSubmitNewResaurant.swift */; };
+		B06055DE282B39460004DB05 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055DD282B39460004DB05 /* extensions.swift */; };
+		B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055DF282B5C470004DB05 /* RestaurantsView.swift */; };
+		B0D61990282C654100F3E8AE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B0D6198F282C654100F3E8AE /* Realm */; };
+		B0D61992282C654100F3E8AE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0D61991282C654100F3E8AE /* RealmSwift */; };
+		B0D61994282C670900F3E8AE /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61993282C670900F3E8AE /* Restaurants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,11 @@
 		B06055CC282B2CFA0004DB05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B06055CE282B2CFB0004DB05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B06055D1282B2CFB0004DB05 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B06055D9282B2ED60004DB05 /* SmallAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallAddButton.swift; sourceTree = "<group>"; };
+		B06055DB282B31120004DB05 /* FormToSubmitNewResaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormToSubmitNewResaurant.swift; sourceTree = "<group>"; };
+		B06055DD282B39460004DB05 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		B06055DF282B5C470004DB05 /* RestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsView.swift; sourceTree = "<group>"; };
+		B0D61993282C670900F3E8AE /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D61992282C654100F3E8AE /* RealmSwift in Frameworks */,
+				B0D61990282C654100F3E8AE /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +65,11 @@
 		B06055C9282B2CFA0004DB05 /* Restaurants_To_Try */ = {
 			isa = PBXGroup;
 			children = (
-				B06055CA282B2CFA0004DB05 /* Restaurants_To_TryApp.swift */,
-				B06055CC282B2CFA0004DB05 /* ContentView.swift */,
+				B0D61993282C670900F3E8AE /* Restaurants.swift */,
+				B06055D8282B2EBA0004DB05 /* Views */,
 				B06055CE282B2CFB0004DB05 /* Assets.xcassets */,
 				B06055D0282B2CFB0004DB05 /* Preview Content */,
+				B06055DD282B39460004DB05 /* extensions.swift */,
 			);
 			path = Restaurants_To_Try;
 			sourceTree = "<group>";
@@ -65,6 +80,18 @@
 				B06055D1282B2CFB0004DB05 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B06055D8282B2EBA0004DB05 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B06055CC282B2CFA0004DB05 /* ContentView.swift */,
+				B06055CA282B2CFA0004DB05 /* Restaurants_To_TryApp.swift */,
+				B06055D9282B2ED60004DB05 /* SmallAddButton.swift */,
+				B06055DB282B31120004DB05 /* FormToSubmitNewResaurant.swift */,
+				B06055DF282B5C470004DB05 /* RestaurantsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +110,10 @@
 			dependencies = (
 			);
 			name = Restaurants_To_Try;
+			packageProductDependencies = (
+				B0D6198F282C654100F3E8AE /* Realm */,
+				B0D61991282C654100F3E8AE /* RealmSwift */,
+			);
 			productName = Restaurants_To_Try;
 			productReference = B06055C7282B2CFA0004DB05 /* Restaurants_To_Try.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +142,9 @@
 				Base,
 			);
 			mainGroup = B06055BE282B2CFA0004DB05;
+			packageReferences = (
+				B0D6198E282C654100F3E8AE /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = B06055C8282B2CFA0004DB05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B06055DE282B39460004DB05 /* extensions.swift in Sources */,
+				B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */,
+				B06055DA282B2ED60004DB05 /* SmallAddButton.swift in Sources */,
 				B06055CD282B2CFA0004DB05 /* ContentView.swift in Sources */,
 				B06055CB282B2CFA0004DB05 /* Restaurants_To_TryApp.swift in Sources */,
+				B06055DC282B31120004DB05 /* FormToSubmitNewResaurant.swift in Sources */,
+				B0D61994282C670900F3E8AE /* Restaurants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +378,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0D6198E282C654100F3E8AE /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.15.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0D6198F282C654100F3E8AE /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D6198E282C654100F3E8AE /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		B0D61991282C654100F3E8AE /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D6198E282C654100F3E8AE /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B06055BF282B2CFA0004DB05 /* Project object */;
 }
