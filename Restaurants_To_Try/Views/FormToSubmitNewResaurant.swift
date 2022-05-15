@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct FormToSubmitNewResaurant: View {
+    @EnvironmentObject var realm: RealmManager
+    @State var restaurantNameInput = ""
+    @State var restaurantNotesInput = ""
+    @State var restaurantCuisineInput = ""
+    @State var restaurantLocationInput = ""
+    @Environment(\.dismiss) var dismiss
+    
     init() {
          UITableView.appearance().backgroundColor = .clear
          UITableViewCell.appearance().backgroundColor = .clear
      }
     
-    @State var restaurantInput = ""
     var body: some View {
         LinearGradient(colors: [.blue,.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
             .overlay{
@@ -30,29 +36,57 @@ struct FormToSubmitNewResaurant: View {
                         location
                     }
                     .padding()
+                    Button{
+                        if  restaurantNameInput != "" && restaurantCuisineInput != "" && restaurantNotesInput != "" && restaurantLocationInput != "" {
+                            let newRestaurant = Restaurants()
+                            
+                            newRestaurant.name = restaurantNameInput
+                            newRestaurant.cuisine = restaurantCuisineInput
+                            newRestaurant.note = restaurantNotesInput
+                            newRestaurant.location = restaurantLocationInput
+                            realm.addRestaurant(restaurant: newRestaurant)
+                            dismiss()
+                        }else{
+                            print("Not all the fields are filles")
+                        }
+                        
+                    }label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 40)
+                                .overlay{
+                                    Text("ADD")
+                                        .foregroundColor(.white)
+                                }
+                        }
+                        .cornerRadius(30)
+                    }
+                    .frame(maxWidth: 100, maxHeight: 60)
+                    .padding()
+                    Spacer()
                 }
             }
+            .ignoresSafeArea()
     }
     
     var restaurantName: some View {
         Section("Name"){
-            TextField("Restaurant Name", text: $restaurantInput)
+            TextField("Restaurant Name", text: $restaurantNameInput)
         }
     }
     
     var notes: some View {
         Section("Neat Taco Bell"){
-            TextField("Notes", text: $restaurantInput)
+            TextField("Notes", text: $restaurantNotesInput)
         }
     }
     var cuisine: some View {
         Section("Mexican"){
-            TextField("Notes", text: $restaurantInput)
+            TextField("Notes", text: $restaurantCuisineInput)
         }
     }
     var location: some View {
         Section("Location"){
-            TextField("Location", text: $restaurantInput)
+            TextField("Location", text: $restaurantLocationInput)
         }
     }
 }
@@ -60,5 +94,6 @@ struct FormToSubmitNewResaurant: View {
 struct FormToSubmitNewResaurant_Previews: PreviewProvider {
     static var previews: some View {
         FormToSubmitNewResaurant()
+            .previewDevice("iPhone 11")
     }
 }

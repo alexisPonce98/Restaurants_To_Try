@@ -6,18 +6,22 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct RestaurantsView : View {
+    @EnvironmentObject var realm: RealmManager
     
     var body: some View{
         NavigationView{
             ZStack{
                 LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea()
-                List {
-                    Text("Taco Bell")
+                List{
+                        ForEach(realm.restaurants, id: \.id){ restaurant in
+                            RestaurantsView()
+                                .environmentObject(restaurant)
+                        }
                 }
-                .navigationTitle("Restaurants")
                 .onAppear{
                     UITableView.appearance().backgroundColor = .clear
                     UITableViewCell.appearance().backgroundColor = .clear
@@ -25,6 +29,7 @@ struct RestaurantsView : View {
             }
 
         }
+        .lineSpacing(40)
         .navigationBarTitleDisplayMode(.automatic)
 
     }

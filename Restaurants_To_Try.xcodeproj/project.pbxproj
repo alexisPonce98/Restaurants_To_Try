@@ -18,6 +18,8 @@
 		B0D61990282C654100F3E8AE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B0D6198F282C654100F3E8AE /* Realm */; };
 		B0D61992282C654100F3E8AE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0D61991282C654100F3E8AE /* RealmSwift */; };
 		B0D61994282C670900F3E8AE /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61993282C670900F3E8AE /* Restaurants.swift */; };
+		B0D61996282C69B000F3E8AE /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61995282C69B000F3E8AE /* RealmManager.swift */; };
+		B0FD56C1282CA64900F85B99 /* RestaurantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FD56C0282CA64900F85B99 /* RestaurantViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		B06055DD282B39460004DB05 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		B06055DF282B5C470004DB05 /* RestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsView.swift; sourceTree = "<group>"; };
 		B0D61993282C670900F3E8AE /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
+		B0D61995282C69B000F3E8AE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		B0FD56C0282CA64900F85B99 /* RestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +69,13 @@
 		B06055C9282B2CFA0004DB05 /* Restaurants_To_Try */ = {
 			isa = PBXGroup;
 			children = (
+				B06055CA282B2CFA0004DB05 /* Restaurants_To_TryApp.swift */,
 				B0D61993282C670900F3E8AE /* Restaurants.swift */,
+				B0D61995282C69B000F3E8AE /* RealmManager.swift */,
+				B06055DD282B39460004DB05 /* extensions.swift */,
 				B06055D8282B2EBA0004DB05 /* Views */,
 				B06055CE282B2CFB0004DB05 /* Assets.xcassets */,
 				B06055D0282B2CFB0004DB05 /* Preview Content */,
-				B06055DD282B39460004DB05 /* extensions.swift */,
 			);
 			path = Restaurants_To_Try;
 			sourceTree = "<group>";
@@ -86,10 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				B06055CC282B2CFA0004DB05 /* ContentView.swift */,
-				B06055CA282B2CFA0004DB05 /* Restaurants_To_TryApp.swift */,
-				B06055D9282B2ED60004DB05 /* SmallAddButton.swift */,
-				B06055DB282B31120004DB05 /* FormToSubmitNewResaurant.swift */,
 				B06055DF282B5C470004DB05 /* RestaurantsView.swift */,
+				B06055DB282B31120004DB05 /* FormToSubmitNewResaurant.swift */,
+				B06055D9282B2ED60004DB05 /* SmallAddButton.swift */,
+				B0FD56C0282CA64900F85B99 /* RestaurantViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,7 +177,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FD56C1282CA64900F85B99 /* RestaurantViewCell.swift in Sources */,
 				B06055DE282B39460004DB05 /* extensions.swift in Sources */,
+				B0D61996282C69B000F3E8AE /* RealmManager.swift in Sources */,
 				B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */,
 				B06055DA282B2ED60004DB05 /* SmallAddButton.swift in Sources */,
 				B06055CD282B2CFA0004DB05 /* ContentView.swift in Sources */,

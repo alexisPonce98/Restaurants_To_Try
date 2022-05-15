@@ -8,9 +8,17 @@
 import Foundation
 import RealmSwift
 
-class Restaurants: Object{
+class Restaurants: Object, ObjectKeyIdentifiable{
+    @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var name = ""
     @Persisted var note = ""
     @Persisted var location = ""
     @Persisted var cuisine = ""
+    
+//    init(name: String, note: String, location: String, cuisine: String){
+//        self.name = name
+//        self.note = note
+//        self.location = location
+//        self.cuisine = cuisine
+//    }
 }

@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ContentView: View {
+    @ObservedObject var realm = RealmManager()
+    
     @State var showForm = false
     var body: some View {
         ZStack(alignment: .bottomTrailing){
             RestaurantsView()
+                .environmentObject(realm)
             SmallAddButton()
                 .padding()
                 .onTapGesture {
@@ -20,6 +24,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showForm){
             FormToSubmitNewResaurant()
+                .environmentObject(realm)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .background(LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
