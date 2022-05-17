@@ -75,18 +75,18 @@ struct FormToSubmitNewResaurant: View {
     }
     
     var notes: some View {
-        Section("Neat Taco Bell"){
-            TextField("Notes", text: $restaurantNotesInput)
+        Section("Notes"){
+            TextField("Near Taco Bell", text: $restaurantNotesInput)
         }
     }
     var cuisine: some View {
-        Section("Mexican"){
-            TextField("Notes", text: $restaurantCuisineInput)
+        Section("Cuisine"){
+            TextField("Mexican", text: $restaurantCuisineInput)
         }
     }
     var location: some View {
         Section("Location"){
-            TextField("Location", text: $restaurantLocationInput)
+            TextField("105 E St", text: $restaurantLocationInput)
         }
     }
 }

@@ -10,9 +10,10 @@ import SwiftUI
 struct RestaurantViewCell: View {
     @EnvironmentObject var restaurant: Restaurants
     var body: some View {
-        VStack{
+        VStack(alignment: .leading){
             HStack{
                 Text("\(restaurant.name)")
+                Spacer()
                 Image(systemName: "checkmark")
             }
             Text("\(restaurant.note)")
@@ -21,7 +22,9 @@ struct RestaurantViewCell: View {
 }
 
 struct RestaurantViewCell_Previews: PreviewProvider {
+    static  var rest = Restaurants()
     static var previews: some View {
         RestaurantViewCell()
+            .environmentObject(rest)
     }
 }

@@ -34,7 +34,9 @@ class RealmManager: ObservableObject{
             let allRestaurants = localRealm.objects(Restaurants.self)
             restaurants = []
             allRestaurants.forEach{
-                restaurants.append($0)
+                if !$0.isInvalidated{
+                    restaurants.append($0)
+                }
             }
         }
     }
@@ -51,6 +53,111 @@ class RealmManager: ObservableObject{
             }
         }
       
+    }
+    
+    func updateRestaurantName(id: ObjectId, newName: String){
+        if let localRealm = localRealm {
+            do{
+                let restaurantToUpdate = localRealm.objects(Restaurants.self).filter(NSPredicate(format: "_id == %@", id))
+                guard !restaurantToUpdate.isEmpty else { return }
+                
+                try localRealm.write{
+                    var oldName = restaurantToUpdate[0].name
+                    restaurantToUpdate[0].name = newName
+                    getRestaurants()
+                    print("Succesfully update the name of \(oldName) to \(newName) ")
+                }
+                
+            }catch{
+                print("Error trying to change the name: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func updateRestaurantNotes(id: ObjectId, newNotes: String){
+        if let localRealm = localRealm {
+            do{
+                let restaurantToUpdate = localRealm.objects(Restaurants.self).filter(NSPredicate(format: "_id == %@", id))
+                
+                guard !restaurantToUpdate.isEmpty else { return }
+                
+                try localRealm.write{
+                    var oldNotes = restaurantToUpdate[0].note
+                    restaurantToUpdate[0].note = newNotes
+                    getRestaurants()
+                    print("Succesfully updated \(restaurantToUpdate[0].name) notest to \(newNotes)")
+                }
+                
+            }catch{
+                print("ERROR trying to update the notes \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func updateRestaurantCuisine(id: ObjectId, newCuisine: String){
+        if let localRealm = localRealm {
+            do{
+                let restaurantToUpdate = localRealm.objects(Restaurants.self).filter(NSPredicate(format: "_id == %@", id))
+                
+                guard !restaurantToUpdate.isEmpty else { return }
+                
+                try localRealm.write{
+                    var oldCusine = restaurantToUpdate[0].note
+                    restaurantToUpdate[0].cuisine = newCuisine
+                    getRestaurants()
+                    print("Succesfully updated \(restaurantToUpdate[0].name) cuisine to \(newCuisine)")
+                }
+                
+            }catch{
+                print("ERROR trying to update the cuisine \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    
+    func updateRestaurantLocation(id: ObjectId, newLocation: String){
+        if let localRealm = localRealm {
+            do{
+                let restaurantToUpdate = localRealm.objects(Restaurants.self).filter(NSPredicate(format: "_id == %@", id))
+                
+                guard !restaurantToUpdate.isEmpty else { return }
+                
+                try localRealm.write{
+                    var oldLocation = restaurantToUpdate[0].location
+                    restaurantToUpdate[0].location = newLocation
+                    getRestaurants()
+                    print("Succesfully updated \(restaurantToUpdate[0].name) location to \(newLocation)")
+                }
+                
+            }catch{
+                print("ERROR trying to update the location \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func deleteRestaurant(_ restaurant: Restaurants, name: String){
+        var restaurauntPassedToDeleteName = restaurant.name
+        if let localRealm = localRealm {
+            do{
+                let restaurantToDelete = localRealm.objects(Restaurants.self).filter(NSPredicate(format: "_id == %@", restaurant._id))
+
+                guard !restaurantToDelete.isEmpty else{ return }
+                print(restaurantToDelete[0].name)
+                try localRealm.write{
+                    if !restaurant.isInvalidated{
+                        localRealm.delete(restaurantToDelete)
+                        getRestaurants()
+                        print("Succesfully deleted \(name)")
+                    }else{
+                        print("Restaurnat: \(name) is invalidated")
+                    }
+                    
+                }
+                
+            }catch{
+                print("Error trying to delete restaurant \(name). ERROR: \(error.localizedDescription)")
+            }
+        }
     }
     
 }

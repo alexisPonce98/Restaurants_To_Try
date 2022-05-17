@@ -17,26 +17,39 @@ struct RestaurantsView : View {
                 LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 List{
-                        ForEach(realm.restaurants, id: \.id){ restaurant in
-                            RestaurantsView()
+                    ForEach(realm.restaurants, id: \._id){ restaurant in
+                        NavigationLink(destination: DetailedRestaurantView(realm: realm).environmentObject(restaurant)){
+                            
+                            RestaurantViewCell()
                                 .environmentObject(restaurant)
                         }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true){
+                            Button(role: .destructive){
+                                realm.deleteRestaurant(restaurant, name: restaurant.name)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                    }
                 }
+                .toolbar{
+                    EditButton()
+                }
+                .navigationTitle("Restaurants") 
+                .environment(\.defaultMinListRowHeight, 80)
                 .onAppear{
                     UITableView.appearance().backgroundColor = .clear
                     UITableViewCell.appearance().backgroundColor = .clear
                 }
             }
-
         }
-        .lineSpacing(40)
-        .navigationBarTitleDisplayMode(.automatic)
-
+        .background(.clear)
     }
 }
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
         RestaurantsView()
+            .environmentObject(RealmManager())
     }
 }
