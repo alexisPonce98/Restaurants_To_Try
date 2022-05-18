@@ -10,13 +10,18 @@ import SwiftUI
 struct RestaurantViewCell: View {
     @EnvironmentObject var restaurant: Restaurants
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Text("\(restaurant.name)")
-                Spacer()
-                Image(systemName: "checkmark")
+        if !restaurant.isInvalidated{
+            VStack(alignment: .leading){
+                HStack{
+                    Text("\(restaurant.name)")
+                    Spacer()
+                    Image(systemName: "checkmark")
+                }
+                Text("\(restaurant.note)")
             }
-            Text("\(restaurant.note)")
+            .onAppear{
+                print("passed the test")
+            }
         }
     }
 }

@@ -136,6 +136,7 @@ class RealmManager: ObservableObject{
     }
     
     func deleteRestaurant(_ restaurant: Restaurants, name: String){
+        
         var restaurauntPassedToDeleteName = restaurant.name
         if let localRealm = localRealm {
             do{
@@ -157,6 +158,22 @@ class RealmManager: ObservableObject{
             }catch{
                 print("Error trying to delete restaurant \(name). ERROR: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func delteRestaurantWithIndexSet(_ indexSet: IndexSet){
+        do{
+            if let localRealm = localRealm {
+                let allRestaurants = localRealm.objects(Restaurants.self)
+                
+               try indexSet.forEach{ index in
+                    try localRealm.write{
+                        localRealm.delete(allRestaurants[index])
+                    }
+                }
+            }
+        }catch{
+            print("There was an error trying to delte restaurant with index set. Error \(error.localizedDescription)")
         }
     }
     
