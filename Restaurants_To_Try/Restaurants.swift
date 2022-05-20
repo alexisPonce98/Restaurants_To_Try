@@ -15,11 +15,12 @@ class Restaurants: Object, ObjectKeyIdentifiable{
     @Persisted var location = ""
     @Persisted var cuisine = ""
     
-    convenience init(name: String, note: String, location: String, cuisine: String){
-        self.init()
-        self.name = name
-        self.note = note
-        self.location = location
-        self.cuisine = cuisine
-    }
+    @Persisted(originProperty: "restaurants") var realmManager: LinkingObjects<RealmManager>
+//    convenience init(name: String, note: String, location: String, cuisine: String){
+//        self.init()
+//        self.name = name
+//        self.note = note
+//        self.location = location
+//        self.cuisine = cuisine
+//    }
 }

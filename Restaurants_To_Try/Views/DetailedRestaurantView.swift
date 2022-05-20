@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct DetailedRestaurantView: View {
     @State var restaurantNameInput:String = ""
     @State var restaurantNotesInput = ""
     @State var restaurantCuisineInput = ""
     @State var restaurantLocationInput = ""
-    var realm: RealmManager
-    @EnvironmentObject var restaurant: Restaurants
+    @ObservedRealmObject var restaurant: Restaurants
     
     var body: some View {
         ZStack{
@@ -48,61 +48,40 @@ struct DetailedRestaurantView: View {
     
     var restaurantName: some View {
         Section("Name"){
-            TextField("\(restaurant.name)", text: $restaurantNameInput)
+            TextField("\(restaurant.name)", text: $restaurant.name)
                 .onTapGesture {
                     restaurantNameInput = restaurant.name
-                }
-                .onChange(of: restaurantNameInput){name in
-                    realm.updateRestaurantName(id: restaurant._id, newName: name)
                 }
         }
     }
     
     var notes: some View {
         Section("Notes"){
-            TextField("\(restaurant.note)", text: $restaurantNotesInput)
-                .onTapGesture {
-                    restaurantNotesInput = restaurant.note
-                }
-                .onChange(of: restaurantNotesInput){note in
-                    realm.updateRestaurantNotes(id: restaurant._id, newNotes: note)
-                }
+            TextField("\(restaurant.note)", text: $restaurant.note)
         }
     }
     var cuisine: some View {
         Section("Cuisine"){
-            TextField("\(restaurant.cuisine)", text: $restaurantCuisineInput)
-                .onTapGesture {
-                    restaurantCuisineInput = restaurant.cuisine
-                }
-                .onChange(of: restaurantCuisineInput){cuisine in
-                    realm.updateRestaurantCuisine(id: restaurant._id, newCuisine: cuisine)
-                }
+            TextField("\(restaurant.cuisine)", text: $restaurant.cuisine)
             
         }
     }
     var location: some View {
         Section("Location"){
-            TextField("\(restaurant.location)", text: $restaurantLocationInput)
-                .onTapGesture {
-                    restaurantLocationInput = restaurant.location
-                }
-                .onChange(of: restaurantLocationInput){newLocation in
-                    realm.updateRestaurantLocation(id: restaurant._id, newLocation: newLocation)
-                }
+            TextField("\(restaurant.location)", text: $restaurant.location)
         }
     }
 }
 
-struct DetailedRestaurantView_Previews: PreviewProvider {
-    static var restaruant = Restaurants(name: "Taco Bell", note: "Near Walmart", location: "105 E Apple St", cuisine: "Mexican")
-//        self.restaurant.name = "Taco Bell"
-//        restaurant.note = "No"
-//        restaurant.cuisine = "Mexican"
-//        restaurant.location + "105 E Apple St"
-    static var previews: some View {
-        DetailedRestaurantView(realm: RealmManager())
-            .previewDevice("iPhone 11")
-            .environmentObject(restaruant)
-    }
-}
+//struct DetailedRestaurantView_Previews: PreviewProvider {
+//    static var restaruant = Restaurants(name: "Taco Bell", note: "Near Walmart", location: "105 E Apple St", cuisine: "Mexican")
+////        self.restaurant.name = "Taco Bell"
+////        restaurant.note = "No"
+////        restaurant.cuisine = "Mexican"
+////        restaurant.location + "105 E Apple St"
+//    static var previews: some View {
+//        DetailedRestaurantView(restaurant: restaruant)
+//            .previewDevice("iPhone 11")
+//            .environmentObject(RealmManager())
+//    }
+//}

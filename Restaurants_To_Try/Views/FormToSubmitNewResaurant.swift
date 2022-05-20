@@ -6,20 +6,17 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct FormToSubmitNewResaurant: View {
-    @EnvironmentObject var realm: RealmManager
+    @ObservedRealmObject var realm: RealmManager
     @State var restaurantNameInput = ""
     @State var restaurantNotesInput = ""
     @State var restaurantCuisineInput = ""
     @State var restaurantLocationInput = ""
     @Environment(\.dismiss) var dismiss
     
-    init() {
-         UITableView.appearance().backgroundColor = .clear
-         UITableViewCell.appearance().backgroundColor = .clear
-     }
-    
+
     var body: some View {
         LinearGradient(colors: [.blue,.purple], startPoint: .topLeading, endPoint: .bottomTrailing)
             .overlay{
@@ -35,16 +32,20 @@ struct FormToSubmitNewResaurant: View {
                         cuisine
                         location
                     }
+                    .onAppear{
+                        UITableView.appearance().backgroundColor = .clear
+                        UITableViewCell.appearance().backgroundColor = .clear
+                    }
                     .padding()
                     Button{
                         if  restaurantNameInput != "" && restaurantCuisineInput != "" && restaurantNotesInput != "" && restaurantLocationInput != "" {
-                            let newRestaurant = Restaurants()
                             
-                            newRestaurant.name = restaurantNameInput
-                            newRestaurant.cuisine = restaurantCuisineInput
-                            newRestaurant.note = restaurantNotesInput
-                            newRestaurant.location = restaurantLocationInput
-                            realm.addRestaurant(restaurant: newRestaurant)
+                            let newRestaurant = Restaurants(value: ["name": restaurantNameInput, "note": restaurantNotesInput, "location": restaurantLocationInput, "cuisine": restaurantCuisineInput])
+                           let realm = try! Realm()
+                            try!realm.write{
+                                $realm.restaurants.append(newRestaurant)
+                            }
+                            
                             dismiss()
                         }else{
                             print("Not all the fields are filles")
@@ -93,7 +94,6 @@ struct FormToSubmitNewResaurant: View {
 
 struct FormToSubmitNewResaurant_Previews: PreviewProvider {
     static var previews: some View {
-        FormToSubmitNewResaurant()
-            .previewDevice("iPhone 11")
+        FormToSubmitNewResaurant(realm: RealmManager())
     }
 }

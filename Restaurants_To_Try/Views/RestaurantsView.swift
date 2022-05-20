@@ -9,8 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct RestaurantsView : View {
-    @EnvironmentObject var realm: RealmManager
-    @State var showNavigationLink = true
+    @ObservedRealmObject var realm: RealmManager
     
     var body: some View{
         NavigationView{
@@ -28,31 +27,26 @@ struct RestaurantsView : View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .background(.clear)
     }
     
     var listRestaurant: some View{
+
         List{
-            ForEach(realm.restaurants, id: \._id){restaurant in
-    
-                    NavigationLink(destination: DetailedRestaurantView(realm: realm).environmentObject(restaurant)){
+            ForEach(realm.restaurants){ restaurant in
+                    
+                    NavigationLink(destination: DetailedRestaurantView(restaurant: restaurant).environmentObject(realm)){
                         
-                        if !restaurant.isInvalidated{
-                            RestaurantViewCell()
-                                .environmentObject(restaurant)
-                        }
+                            RestaurantViewCell(restaurant: restaurant)
                         
                     }
-//                                .swipeActions(edge: .trailing, allowsFullSwipe: true){
-//                                    Button(role: .destructive){
-//                                        realm.deleteRestaurant(restaurant, name: restaurant.name)
-//                                    } label: {
-//                                        Label("Delete", systemImage: "trash")
-//                                    }
-//                                }
-            }.onDelete{indexSet in
-                realm.delteRestaurantWithIndexSet(indexSet)
             }
+            .onDelete{ index in
+                let realm = try! Realm()
+                try! realm.write{
+                    $realm.restaurants.remove(atOffsets: index)
+                }
             }
             .toolbar{
                 EditButton()
@@ -63,12 +57,12 @@ struct RestaurantsView : View {
                 UITableView.appearance().backgroundColor = .clear
                 UITableViewCell.appearance().backgroundColor = .clear
             }
-    }
+        }
 }
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView()
-            .environmentObject(RealmManager())
+        RestaurantsView(realm: RealmManager())
     }
+}
 }

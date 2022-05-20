@@ -9,26 +9,33 @@ import SwiftUI
 import RealmSwift
 
 struct ContentView: View {
-    @ObservedObject var realm = RealmManager()
+    @ObservedResults(RealmManager.self) var realm
     
     @State var showForm = false
     var body: some View {
-        ZStack(alignment: .bottomTrailing){
-            RestaurantsView()
-                .environmentObject(realm)
-            SmallAddButton()
-                .padding()
-                .onTapGesture {
-                    showForm.toggle()
-                }
+        if let realmManager = realm.first{
+            ZStack(alignment: .bottomTrailing){
+                
+                RestaurantsView(realm: realmManager)
+                SmallAddButton()
+                    .padding()
+                    .onTapGesture {
+                        showForm.toggle()
+                    }
+            }
+            .sheet(isPresented: $showForm){
+                FormToSubmitNewResaurant(realm: realmManager)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            .background(LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
+        }else{
+            ProgressView().onAppear{
+                print("Got to the progressview")
+                $realm.append(RealmManager())
+            }
         }
-        .sheet(isPresented: $showForm){
-            FormToSubmitNewResaurant()
-                .environmentObject(realm)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .background(LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing))
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

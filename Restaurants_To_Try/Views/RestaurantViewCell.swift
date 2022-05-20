@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct RestaurantViewCell: View {
-    @EnvironmentObject var restaurant: Restaurants
+    @ObservedRealmObject var restaurant: Restaurants
     var body: some View {
         if !restaurant.isInvalidated{
             VStack(alignment: .leading){
@@ -19,17 +20,12 @@ struct RestaurantViewCell: View {
                 }
                 Text("\(restaurant.note)")
             }
-            .onAppear{
-                print("passed the test")
-            }
         }
     }
 }
 
 struct RestaurantViewCell_Previews: PreviewProvider {
-    static  var rest = Restaurants()
     static var previews: some View {
-        RestaurantViewCell()
-            .environmentObject(rest)
+        RestaurantViewCell(restaurant: Restaurants())
     }
 }
