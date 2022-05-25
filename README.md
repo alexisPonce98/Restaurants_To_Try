@@ -1,3 +1,13 @@
-# Restaurants_To_Try
-An app to track restaurants that you want to try
-(A work in progress).
+# An app to track restaurants
+ Save the restaurants you wish to try to save yourself from future headaches. 
+
+**Built On**
+------------
+* SwiftUi
+* MangoDB
+* MapKit(In Progress)
+
+**Features**
+------------
+* CRUD With MangoDB
+* MapKit(In Progress)
