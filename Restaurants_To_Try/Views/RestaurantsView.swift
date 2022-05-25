@@ -53,10 +53,11 @@ struct RestaurantsView : View {
             }
             .navigationTitle("Restaurants")
             .environment(\.defaultMinListRowHeight, 80)
-            .onAppear{
-                UITableView.appearance().backgroundColor = .clear
-                UITableViewCell.appearance().backgroundColor = .clear
-            }
+     
+        }
+        .onAppear{
+            UITableView.appearance().backgroundColor = .clear
+            UITableViewCell.appearance().backgroundColor = .clear
         }
 }
 

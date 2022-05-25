@@ -7,6 +7,8 @@
 
 import SwiftUI
 import RealmSwift
+import MapKit
+
 
 struct DetailedRestaurantView: View {
     @State var restaurantNameInput:String = ""
@@ -14,6 +16,13 @@ struct DetailedRestaurantView: View {
     @State var restaurantCuisineInput = ""
     @State var restaurantLocationInput = ""
     @ObservedRealmObject var restaurant: Restaurants
+    
+    @State private var region = MKCoordinateRegion(
+         center: CLLocationCoordinate2D(latitude: 37.334_900,
+                                        longitude: -122.009_020),
+         latitudinalMeters: 750,
+         longitudinalMeters: 750
+     )
     
     var body: some View {
         ZStack{
@@ -25,21 +34,16 @@ struct DetailedRestaurantView: View {
                     notes
                     cuisine
                     location
-                }
+                }.zIndex(1)
+                .clipped()
                 .onChange(of: restaurantNameInput){name in
                     print(restaurantNameInput)
                     print(name)
                 }
                 Spacer()
-                Button{
-             
-                }label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 20)
-                        Text("SAVE")
-                    }
-                }
-                .frame(maxWidth: 60, maxHeight: 40)
+                Map(coordinateRegion: $region)
+                    .padding()
+                    .clipped()
             }
         }
     }
@@ -73,15 +77,10 @@ struct DetailedRestaurantView: View {
     }
 }
 
-//struct DetailedRestaurantView_Previews: PreviewProvider {
-//    static var restaruant = Restaurants(name: "Taco Bell", note: "Near Walmart", location: "105 E Apple St", cuisine: "Mexican")
-////        self.restaurant.name = "Taco Bell"
-////        restaurant.note = "No"
-////        restaurant.cuisine = "Mexican"
-////        restaurant.location + "105 E Apple St"
-//    static var previews: some View {
-//        DetailedRestaurantView(restaurant: restaruant)
-//            .previewDevice("iPhone 11")
-//            .environmentObject(RealmManager())
-//    }
-//}
+struct DetailedRestaurantView_Previews: PreviewProvider {
+  
+    static var previews: some View {
+        DetailedRestaurantView(restaurant: Restaurants())
+            .previewDevice("iPhone 11")
+    }
+}
