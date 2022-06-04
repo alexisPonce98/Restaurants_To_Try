@@ -16,6 +16,8 @@
 		B06055DE282B39460004DB05 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055DD282B39460004DB05 /* extensions.swift */; };
 		B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055DF282B5C470004DB05 /* RestaurantsView.swift */; };
 		B06E9E3C2831E15C007364D8 /* DetailedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9E3B2831E15C007364D8 /* DetailedRestaurantView.swift */; };
+		B07258CF284423F800010D64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B07258CE284423F700010D64 /* README.md */; };
+		B0B486B92840274A004B45F5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B486B828402749004B45F5 /* LocationManager.swift */; };
 		B0D61990282C654100F3E8AE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B0D6198F282C654100F3E8AE /* Realm */; };
 		B0D61992282C654100F3E8AE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0D61991282C654100F3E8AE /* RealmSwift */; };
 		B0D61994282C670900F3E8AE /* Restaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D61993282C670900F3E8AE /* Restaurants.swift */; };
@@ -34,6 +36,9 @@
 		B06055DD282B39460004DB05 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		B06055DF282B5C470004DB05 /* RestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsView.swift; sourceTree = "<group>"; };
 		B06E9E3B2831E15C007364D8 /* DetailedRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRestaurantView.swift; sourceTree = "<group>"; };
+		B07258CD2842E35A00010D64 /* Restaurants-To-Try-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Restaurants-To-Try-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B07258CE284423F700010D64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B0B486B828402749004B45F5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B0D61993282C670900F3E8AE /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 		B0D61995282C69B000F3E8AE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		B0FD56C0282CA64900F85B99 /* RestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewCell.swift; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 		B06055BE282B2CFA0004DB05 = {
 			isa = PBXGroup;
 			children = (
+				B07258CE284423F700010D64 /* README.md */,
 				B06055C9282B2CFA0004DB05 /* Restaurants_To_Try */,
 				B06055C8282B2CFA0004DB05 /* Products */,
 			);
@@ -71,10 +77,12 @@
 		B06055C9282B2CFA0004DB05 /* Restaurants_To_Try */ = {
 			isa = PBXGroup;
 			children = (
+				B07258CD2842E35A00010D64 /* Restaurants-To-Try-Info.plist */,
 				B06055CA282B2CFA0004DB05 /* Restaurants_To_TryApp.swift */,
 				B0D61993282C670900F3E8AE /* Restaurants.swift */,
 				B0D61995282C69B000F3E8AE /* RealmManager.swift */,
 				B06055DD282B39460004DB05 /* extensions.swift */,
+				B0B486B828402749004B45F5 /* LocationManager.swift */,
 				B06055D8282B2EBA0004DB05 /* Views */,
 				B06055CE282B2CFB0004DB05 /* Assets.xcassets */,
 				B06055D0282B2CFB0004DB05 /* Preview Content */,
@@ -168,6 +176,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B07258CF284423F800010D64 /* README.md in Resources */,
 				B06055D2282B2CFB0004DB05 /* Preview Assets.xcassets in Resources */,
 				B06055CF282B2CFB0004DB05 /* Assets.xcassets in Resources */,
 			);
@@ -183,6 +192,7 @@
 				B0FD56C1282CA64900F85B99 /* RestaurantViewCell.swift in Sources */,
 				B06055DE282B39460004DB05 /* extensions.swift in Sources */,
 				B0D61996282C69B000F3E8AE /* RealmManager.swift in Sources */,
+				B0B486B92840274A004B45F5 /* LocationManager.swift in Sources */,
 				B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */,
 				B06055DA282B2ED60004DB05 /* SmallAddButton.swift in Sources */,
 				B06055CD282B2CFA0004DB05 /* ContentView.swift in Sources */,
@@ -321,6 +331,8 @@
 				DEVELOPMENT_TEAM = LVMK3Q3VT6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Restaurants-To-Try-Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Used to find the neares restaurant";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -350,6 +362,8 @@
 				DEVELOPMENT_TEAM = LVMK3Q3VT6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Restaurants-To-Try-Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Used to find the neares restaurant";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

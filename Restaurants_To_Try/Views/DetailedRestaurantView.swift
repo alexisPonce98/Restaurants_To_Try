@@ -15,35 +15,53 @@ struct DetailedRestaurantView: View {
     @State var restaurantNotesInput = ""
     @State var restaurantCuisineInput = ""
     @State var restaurantLocationInput = ""
-    @ObservedRealmObject var restaurant: Restaurants
-    
-    @State private var region = MKCoordinateRegion(
+    @State private var defaultRegion = MKCoordinateRegion(
          center: CLLocationCoordinate2D(latitude: 37.334_900,
                                         longitude: -122.009_020),
          latitudinalMeters: 750,
          longitudinalMeters: 750
      )
     
+    @ObservedRealmObject var restaurant: Restaurants
+    @ObservedObject var locationManager = LocationHelper.shared
+    
+    
+    
     var body: some View {
         ZStack{
             LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
+
             VStack{
                 List{
                     restaurantName
                     notes
                     cuisine
                     location
-                }.zIndex(1)
+                }
+                .aspectRatio(contentMode: .fill)
                 .clipped()
-                .onChange(of: restaurantNameInput){name in
-                    print(restaurantNameInput)
-                    print(name)
+                .onAppear{
+                    UITableView.appearance().isScrollEnabled = false
+                    UITableView.appearance().backgroundColor = .clear
+                    UITableViewCell.appearance().backgroundColor = .clear
                 }
                 Spacer()
-                Map(coordinateRegion: $region)
+                Map(coordinateRegion: $defaultRegion)
                     .padding()
                     .clipped()
+                    .onAppear{
+                        
+                        Task{
+                            if let foundLocation = await locationManager.searchRestaurantCoordinatedWithTitle(restaurant.location){
+                                
+                                defaultRegion = MKCoordinateRegion(center: foundLocation.coordinate, latitudinalMeters: 750, longitudinalMeters: 750)
+                                
+                            }
+                        }
+                        
+                    }
+                    
             }
         }
     }

@@ -7,14 +7,21 @@
 
 import SwiftUI
 import RealmSwift
+import MapKit
+import CoreLocation
+import CoreLocationUI
 
 struct FormToSubmitNewResaurant: View {
     @ObservedRealmObject var realm: RealmManager
+    @ObservedObject var locationManager = LocationHelper.shared
+    
     @State var restaurantNameInput = ""
     @State var restaurantNotesInput = ""
     @State var restaurantCuisineInput = ""
     @State var restaurantLocationInput = ""
+    
     @Environment(\.dismiss) var dismiss
+    
     
 
     var body: some View {
@@ -26,6 +33,7 @@ struct FormToSubmitNewResaurant: View {
                         .font(.system(size: 30))
                         .bold()
                         .padding()
+
                     List{
                         restaurantName
                         notes
@@ -39,12 +47,23 @@ struct FormToSubmitNewResaurant: View {
                     .padding()
                     Button{
                         if  restaurantNameInput != "" && restaurantCuisineInput != "" && restaurantNotesInput != "" && restaurantLocationInput != "" {
-                            
-                            let newRestaurant = Restaurants(value: ["name": restaurantNameInput, "note": restaurantNotesInput, "location": restaurantLocationInput, "cuisine": restaurantCuisineInput])
-                           let realm = try! Realm()
-                            try!realm.write{
-                                $realm.restaurants.append(newRestaurant)
+                            Task{
+                                if let restaurantFound = await locationManager.searchRestaurantWithName(restaurantNameInput){
+                                    
+                                    restaurantLocationInput = restaurantFound
+                                    print("This is the restaurant name after submitting the form \(restaurantLocationInput)")
+                                    
+                                }
+                                let newRestaurant = Restaurants(value: ["name": restaurantNameInput, "note": restaurantNotesInput, "location": restaurantLocationInput, "cuisine": restaurantCuisineInput])
+                                print("This is the object being added to the db \(newRestaurant)")
+                                let realm = try! await Realm()
+                                try!realm.write{
+                                    $realm.restaurants.append(newRestaurant)
+                                }
                             }
+                          
+                            
+                   
                             
                             dismiss()
                         }else{
@@ -89,6 +108,11 @@ struct FormToSubmitNewResaurant: View {
         Section("Location"){
             TextField("105 E St", text: $restaurantLocationInput)
         }
+    }
+    
+    private func lookForRestaurant(_ restaurant: String){
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = restaurant
     }
 }
 
