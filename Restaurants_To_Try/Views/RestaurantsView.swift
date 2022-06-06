@@ -48,13 +48,10 @@ struct RestaurantsView : View {
                     $realm.restaurants.remove(atOffsets: index)
                 }
             }
-            .toolbar{
-                EditButton()
-            }
             .navigationTitle("Restaurants")
             .environment(\.defaultMinListRowHeight, 80)
      
-        }
+        }.listRowSeparator(.hidden)
         .onAppear{
             UITableView.appearance().backgroundColor = .clear
             UITableViewCell.appearance().backgroundColor = .clear

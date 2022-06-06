@@ -14,6 +14,9 @@ class RealmManager: Object, ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var restaurants = RealmSwift.List<Restaurants>()
     
+    
+    
+    ///MARK: Pre SwiftUI Realm update
 //    init(){
 //        openRealm()
 //        getRestaurants()

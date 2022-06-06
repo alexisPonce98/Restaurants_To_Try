@@ -16,7 +16,6 @@ struct RestaurantViewCell: View {
                 HStack{
                     Text("\(restaurant.name)")
                     Spacer()
-                    Image(systemName: "checkmark")
                 }
                 Text("\(restaurant.note)")
             }

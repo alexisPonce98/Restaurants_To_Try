@@ -58,9 +58,14 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
     }
     
     func searchRestaurantWithName(_ restaruant: String)async -> String?{
-        var searchRequest = MKLocalSearch.Request()
+        let searchRequest = MKLocalSearch.Request()
         searchRequest.naturalLanguageQuery = restaruant
         searchRequest.resultTypes = .pointOfInterest
+        if let currentLocation = currentLocation {
+            searchRequest.region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        }
+       
+        
         if let currentLocation = currentLocation {
             searchRequest.region = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 750, longitudinalMeters: 750)
         }else{
@@ -79,7 +84,7 @@ class LocationHelper: NSObject, ObservableObject, CLLocationManagerDelegate{
                 if !response.mapItems.isEmpty{
                     let mapItem = response.mapItems[0]
                     foundRestaurant = mapItem.placemark.title
-                    print("This is the first \(foundRestaurant)")
+                    print("This is the first \(String(describing: foundRestaurant))")
             }
             
         }

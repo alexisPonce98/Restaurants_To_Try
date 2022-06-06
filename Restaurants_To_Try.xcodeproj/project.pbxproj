@@ -17,6 +17,7 @@
 		B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06055DF282B5C470004DB05 /* RestaurantsView.swift */; };
 		B06E9E3C2831E15C007364D8 /* DetailedRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9E3B2831E15C007364D8 /* DetailedRestaurantView.swift */; };
 		B07258CF284423F800010D64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B07258CE284423F700010D64 /* README.md */; };
+		B09F7C7A284E9A3800163C7F /* MapPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09F7C79284E9A3800163C7F /* MapPlace.swift */; };
 		B0B486B92840274A004B45F5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B486B828402749004B45F5 /* LocationManager.swift */; };
 		B0D61990282C654100F3E8AE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B0D6198F282C654100F3E8AE /* Realm */; };
 		B0D61992282C654100F3E8AE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0D61991282C654100F3E8AE /* RealmSwift */; };
@@ -38,6 +39,7 @@
 		B06E9E3B2831E15C007364D8 /* DetailedRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRestaurantView.swift; sourceTree = "<group>"; };
 		B07258CD2842E35A00010D64 /* Restaurants-To-Try-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Restaurants-To-Try-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B07258CE284423F700010D64 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B09F7C79284E9A3800163C7F /* MapPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPlace.swift; sourceTree = "<group>"; };
 		B0B486B828402749004B45F5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B0D61993282C670900F3E8AE /* Restaurants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurants.swift; sourceTree = "<group>"; };
 		B0D61995282C69B000F3E8AE /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				B0D61995282C69B000F3E8AE /* RealmManager.swift */,
 				B06055DD282B39460004DB05 /* extensions.swift */,
 				B0B486B828402749004B45F5 /* LocationManager.swift */,
+				B09F7C79284E9A3800163C7F /* MapPlace.swift */,
 				B06055D8282B2EBA0004DB05 /* Views */,
 				B06055CE282B2CFB0004DB05 /* Assets.xcassets */,
 				B06055D0282B2CFB0004DB05 /* Preview Content */,
@@ -191,6 +194,7 @@
 			files = (
 				B0FD56C1282CA64900F85B99 /* RestaurantViewCell.swift in Sources */,
 				B06055DE282B39460004DB05 /* extensions.swift in Sources */,
+				B09F7C7A284E9A3800163C7F /* MapPlace.swift in Sources */,
 				B0D61996282C69B000F3E8AE /* RealmManager.swift in Sources */,
 				B0B486B92840274A004B45F5 /* LocationManager.swift in Sources */,
 				B06055E0282B5C470004DB05 /* RestaurantsView.swift in Sources */,
