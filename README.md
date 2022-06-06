@@ -1,11 +1,12 @@
 # An app to track restaurants
- Save the restaurants you wish to try to save yourself from future headaches. 
+ Save the restaurants you wish to try to save yourself from future headaches.
+ + No need to put in the location, we will find it using Apple MapKit.
 
 **Built On**
 ------------
 * SwiftUi
 * MangoDB
-* MapKit(In Progress)
+* MapKit
 
 **Features**
 ------------
