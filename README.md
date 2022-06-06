@@ -14,4 +14,6 @@
 
 ![alt text](https://github.com/alexisPonce98/Restaurants_To_Try/blob/main/Images/No_Data.jpeg)
 ![alt text](https://github.com/alexisPonce98/Restaurants_To_Try/blob/main/Images/with_data.PNG)
+![alt text](https://github.com/alexisPonce98/Restaurants_To_Try/blob/main/Images/DetailedView.PNG)
+![alt text](https://github.com/alexisPonce98/Restaurants_To_Try/blob/main/Images/FormToSubmit.PNG)
 
