@@ -48,7 +48,7 @@ struct RestaurantsView : View {
                     $realm.restaurants.remove(atOffsets: index)
                 }
             }
-            .navigationTitle("Restaurants")
+            .navigationTitle("Restaurant List")
             .environment(\.defaultMinListRowHeight, 80)
      
         }.listRowSeparator(.hidden)
